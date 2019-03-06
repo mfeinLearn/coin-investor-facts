@@ -29,14 +29,11 @@ has_many :investment_enties
 ## InvestmentEntry
 
 ## Attributes
-- :content =>
-{
-  name,
-  team,
-  community_number,
-  code,
-  whitepaper
-}
+- name
+- team
+- community_number
+- code
+- whitepaper
 - user_id <-- this will be the foreign key!
 - date <-- is this a stretch goal?
 
@@ -55,3 +52,24 @@ view their entries
 - Include a join model
 - Include a Investment model - users have different Investments and a Investment has many Entries
 - Users can see update news regarding regulation in the layout
+
+
+
+------------------
+#example of Attributes:
+------------------
+
+- :content =>
+{
+  name = "",
+  team = "",
+  community_number = "",
+  code = "",
+  whitepaper = ""
+}
+example:
+  params[:content][:name]
+  params[:content][:team]
+  params[:content][:community_number]
+  params[:content][:code]
+  params[:content][:whitepaper]
