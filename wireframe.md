@@ -54,4 +54,4 @@ view their entries
 - Tests
 - Include a join model
 - Include a Investment model - users have different Investments and a Investment has many Entries
-- Users can choose to make their entries public or private
+- Users can see update news regarding regulation in the layout
