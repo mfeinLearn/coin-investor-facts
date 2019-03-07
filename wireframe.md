@@ -1,6 +1,15 @@
 # App Overview
 
 I am going to build an investment app, where a user can create Investment Entries(coins).
+user -< InvestmentEntry
+
+                            ,,,,,,,,,,
+                            , c1     ,
+                            ,  c2    ,
+***investment_enties****  = ,,,,,,,,,,
+
+
+
 
 # User Stories
 
@@ -16,6 +25,12 @@ I am going to build an investment app, where a user can create Investment Entrie
 ## Models will be - User and InvestmentEntry
 
 ## User
+users
+_______________________________________
+1| bob  | bob@bob.com   | password |
+2| jim  | jim@jim.com   | password |
+3| atom | atom@atom.com | password |
+----------------------------------------
 
 ## Attributes
 
@@ -27,6 +42,12 @@ I am going to build an investment app, where a user can create Investment Entrie
 has_many :investment_enties
 
 ## InvestmentEntry
+investment_entries
+_______________________________________
+1| eth  | Vitalik Buterin, Patrick Storchenegger, Jeffrey Wilcke   | password | eth  | bob@bob.com   | password | password |
+2| agi  | jim@jim.com   | password | agi  | jim@jim.com   | password | password |
+3| tron | atom@atom.com | password | tron | atom@atom.com | password | password |
+----------------------------------------
 
 ## Attributes
 - name
@@ -51,6 +72,7 @@ view their entries
 - Tests
 - Include a join model
 - Include a Investment model - users have different Investments and a Investment has many Entries
+- Include a  (user_investments)
 - Users can see update news regarding regulation in the layout
 
 
@@ -73,3 +95,16 @@ example:
   params[:content][:community_number]
   params[:content][:code]
   params[:content][:whitepaper]
+---------------------------
+
+user_investments
+user | investments
+1    | coin
+------------------
+1    | coin
+-------------------
+1    | coin
+-------------------
+1    | coin
+user -< user_investments -< investments -< coins
+                      asset classes = coin, equity, gold, real estate
