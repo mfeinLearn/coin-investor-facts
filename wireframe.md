@@ -1,15 +1,6 @@
 # App Overview
 
 I am going to build an investment app, where a user can create Investment Entries(coins).
-user -< InvestmentEntry
-
-                            ,,,,,,,,,,
-                            , c1     ,
-                            ,  c2    ,
-***investment_enties****  = ,,,,,,,,,,
-
-
-
 
 # User Stories
 
@@ -23,13 +14,15 @@ user -< InvestmentEntry
 # Wireframe
 
 ## Models will be - User and InvestmentEntry
+-------------------------------------------------------------------------------------
 
 ## User
-users
+Table: users
+id name   email            password
 _______________________________________
-1| bob  | bob@bob.com   | password |
-2| jim  | jim@jim.com   | password |
-3| atom | atom@atom.com | password |
+1| bob  | bob@bob.com   | password_digest |
+2| jim  | jim@jim.com   | password_digest |
+3| atom | atom@atom.com | password_digest |
 ----------------------------------------
 
 ## Attributes
@@ -40,26 +33,54 @@ _______________________________________
 
 ## Associations
 has_many :investment_enties
-
+-------------------------------------------------------------------------------------
 ## InvestmentEntry
-investment_entries
-_______________________________________
-1| eth  | Vitalik Buterin, Patrick Storchenegger, Jeffrey Wilcke   | password | eth  | bob@bob.com   | password | password |
-2| agi  | jim@jim.com   | password | agi  | jim@jim.com   | password | password |
-3| tron | atom@atom.com | password | tron | atom@atom.com | password | password |
-----------------------------------------
+Table: investment_entries
+
+
+id name team_id community       code      whitepaper      user_id   date
+________________________________________________________________________
+1| eth  | 1 |  gitter.im  | github.com | whitepaper_link  | 1 | datetime |
+2| agi  | 2 |  t.bit      | github.com | whitepaper_link  | 2 | datetime |
+3| tron | 3 |  t.bit      | github.com | whitepaper_link  | 3 | datetime |
+------------------------------------------------------------------------
 
 ## Attributes
 - name
 - team
-- community_number
+- community
 - code
 - whitepaper
 - user_id <-- this will be the foreign key!
-- date <-- is this a stretch goal?
+- date
 
 ## Associations
 belongs_to :user
+
+-------------------------------------------------------------------------------------
+
+
+## Team
+teams
+     name                  investment_entry_id
+_______________________________________
+1| Vitalik Buterin        | 1   |
+2| Patrick Storchenegger  | 1   |
+3| Jeffrey Wilcke         | 1   |
+4| someone_1              | ?   |
+5| someone_2              | ?   |
+6| someone_3              | ?   |
+----------------------------------------
+
+## Attributes
+- name
+- investment_entry_id
+
+## Associations
+belongs_to :investment_entry
+
+-------------------------------------------------------------------------------------
+
 
 # MVP
 
@@ -72,39 +93,44 @@ view their entries
 - Tests
 - Include a join model
 - Include a Investment model - users have different Investments and a Investment has many Entries
-- Include a  (user_investments)
 - Users can see update news regarding regulation in the layout
+######VERY BIG STRETCH GOAL######
+- Abstract away investment_entries to enable people to invest in other asset classes
+(asset classes = coin, equity, gold, real estate)
 
 
 
-------------------
-#example of Attributes:
-------------------
+######################## 'TEAMS' ##############################################################
 
-- :content =>
-{
-  name = "",
-  team = "",
-  community_number = "",
-  code = "",
-  whitepaper = ""
-}
-example:
-  params[:content][:name]
-  params[:content][:team]
-  params[:content][:community_number]
-  params[:content][:code]
-  params[:content][:whitepaper]
----------------------------
+# list out all of the team members associated with the investment_entry in question
+investment_entries.each do |investment_entry|
+  investment_entry.teams.find_all do |team|
+    Team.all.investment_entry_id == team.investment_entry_id
+  end
+end
+########################### 'TEAMS' ###########################################################
 
-user_investments
-user | investments
-1    | coin
-------------------
-1    | coin
--------------------
-1    | coin
--------------------
-1    | coin
-user -< user_investments -< investments -< coins
-                      asset classes = coin, equity, gold, real estate
+############################ investment big picture ########################################
+                            investment
+                             --below--
+                            ,,,,,,,,,,
+                            , c1     ,
+                            ,  c2    ,
+***investment_enties****  = ,,,,,,,,,,
+
+########################### investment big picture #########################################
+
+
+DIAGRAM:
+users-<investment_entries-<teams
+
+associations:
+malcome = User.create(name: "malcome", email: "malcome@malcome.com", password:"Hashed")
+eth = InvestmentEntry.create(name: params[:name], team: params[:team], community: params[:community], code: params[:code], whitepaper: params[:whitepaper], user_id: params[:user_id], date: params[:date])
+vic = Team.create(name: params[:name])
+
+
+########################### 'The abstraction' ########################################################
+users-<investment_entries(coins)-<teams(board members)
+(asset classes = coin, equity, gold, real estate)
+########################### 'The abstraction' ########################################################
