@@ -20,10 +20,14 @@ I am going to build an investment app, where a user can create Investment Entrie
 Table: users
 id name   email            password
 _______________________________________
-1| bob  | bob@bob.com   | password_digest |
+1| "bob"  | "bob@bob.com"   | password_digest |
 2| jim  | jim@jim.com   | password_digest |
 3| atom | atom@atom.com | password_digest |
 ----------------------------------------
+
+
+
+
 
 ## Attributes
 
@@ -38,12 +42,15 @@ has_many :investment_enties
 Table: investment_entries
 
 
-id name team_id community       code      whitepaper      user_id   date
+id name community       code      whitepaper      user_id   date
 ________________________________________________________________________
-1| eth  | 1 |  gitter.im  | github.com | whitepaper_link  | 1 | datetime |
-2| agi  | 2 |  t.bit      | github.com | whitepaper_link  | 2 | datetime |
-3| tron | 3 |  t.bit      | github.com | whitepaper_link  | 3 | datetime |
+1| eth  |  gitter.im  | github.com | whitepaper_link  | 1 | datetime |
+2| agi  |  t.bit      | github.com | whitepaper_link  | 2 | datetime |
+3| tron |  t.bit      | github.com | whitepaper_link  | 3 | datetime |
 ------------------------------------------------------------------------
+Vitalik Buterin   
+Patrick Storchenegger
+ Jeffrey Wilcke  
 
 ## Attributes
 - name
@@ -67,9 +74,9 @@ _______________________________________
 1| Vitalik Buterin        | 1   |
 2| Patrick Storchenegger  | 1   |
 3| Jeffrey Wilcke         | 1   |
-4| someone_1              | ?   |
-5| someone_2              | ?   |
-6| someone_3              | ?   |
+4| someone_1              | 2   |
+5| someone_2              | 2   |
+6| someone_3              | 2   |
 ----------------------------------------
 
 ## Attributes
@@ -96,7 +103,7 @@ view their entries
 - Users can see update news regarding regulation in the layout
 ######VERY BIG STRETCH GOAL######
 - Abstract away investment_entries to enable people to invest in other asset classes
-(asset classes = coin, equity, gold, real estate)
+(asset classes = coin)   
 
 
 
@@ -104,7 +111,7 @@ view their entries
 
 # list out all of the team members associated with the investment_entry in question
 investment_entries.each do |investment_entry|
-  investment_entry.teams.find_all do |team|
+  investment_entry.teams.each do |team|
     Team.all.investment_entry_id == team.investment_entry_id
   end
 end
@@ -126,11 +133,13 @@ users-<investment_entries-<teams
 
 associations:
 malcome = User.create(name: "malcome", email: "malcome@malcome.com", password:"Hashed")
+
 eth = InvestmentEntry.create(name: params[:name], team: params[:team], community: params[:community], code: params[:code], whitepaper: params[:whitepaper], user_id: params[:user_id], date: params[:date])
+
 vic = Team.create(name: params[:name])
 
 
 ########################### 'The abstraction' ########################################################
 users-<investment_entries(coins)-<teams(board members)
-(asset classes = coin, equity, gold, real estate)
+(asset classes = ++++coin++++, equity, gold, real estate)
 ########################### 'The abstraction' ########################################################
