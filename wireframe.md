@@ -18,7 +18,7 @@ I am going to build an investment app, where a user can create Investment Entrie
 
 ## User
 Table: users
-id name   email            password
+id username   email            password
 _______________________________________
 1| "bob"  | "bob@bob.com"   | password_digest |
 2| jim  | jim@jim.com   | password_digest |
@@ -31,7 +31,7 @@ _______________________________________
 
 ## Attributes
 
-- name
+- username
 - email
 - password (if I use bcrypt, this will be 'password_digest' in the database)
 
@@ -42,7 +42,7 @@ has_many :investment_enties
 Table: investment_entries
 
 
-id name community       code      whitepaper      user_id   date
+id coin_name community       code      whitepaper      user_id   date
 ________________________________________________________________________
 1| eth  |  gitter.im  | github.com | whitepaper_link  | 1 | datetime |
 2| agi  |  t.bit      | github.com | whitepaper_link  | 2 | datetime |
@@ -53,7 +53,7 @@ Patrick Storchenegger
  Jeffrey Wilcke  
 
 ## Attributes
-- name
+- coin_name
 - team
 - community
 - code
