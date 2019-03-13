@@ -1,0 +1,21 @@
+<h2>Edit Investment Entry: </h2>
+
+<form class="" action="/investment_entries/<%= @investment_entry.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <label>coin_name:</label>
+  <input type="text" name="coin_name" value="<%= @investment_entry.coin_name %>">
+
+  <label>community:</label>
+  <input type="text" name="community" value="<%= @investment_entry.community %>">
+
+  <label">code:</label>
+  <input type="text" name="code" value="<%= @investment_entry.code %>">
+
+  <label>whitepaper:</label>
+  <input type="text" name="whitepaper" value="<%= @investment_entry.whitepaper %>>
+
+  <!-- <input type="submit" id="submit"  name="submit"  value="Edit Investment Entry"> -->
+  <input type="submit" name="" value="submit">
+
+</form>

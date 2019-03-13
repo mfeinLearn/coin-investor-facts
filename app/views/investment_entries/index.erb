@@ -1,0 +1,11 @@
+yooooooo!
+
+<h2>Welcome,<%#= @tweets.user.username %></h2>
+
+<ul><% @investment_entries.each do |investment_entry| %>
+<li><%= investment_entry.coin_name %></li>
+<li><%= investment_entry.community %></li>
+<li><%= investment_entry.code %></li>
+<li><%= investment_entry.whitepaper %></li>
+<li><%= investment_entry.date %></li>
+<%end %></ul>

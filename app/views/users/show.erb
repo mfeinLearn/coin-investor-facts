@@ -1,0 +1,10 @@
+<%= @user.username %>
+
+<% @user.investment_entries.each do |investment_entry| %>
+<%= investment_entry.coin_name %>
+<%= investment_entry.community %>
+<%= investment_entry.code %>
+<%= investment_entry.whitepaper %>
+<%= investment_entry.content %>
+<%= investment_entry.date %>
+<% end %>

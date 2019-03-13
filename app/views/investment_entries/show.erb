@@ -1,0 +1,19 @@
+<h3><%= @investment_entry.coin_name %> </h3>
+<br>
+<h3><%= @investment_entry.community %> </h3>
+<br>
+<h3><%= @investment_entry.code %> </h3>
+<br>
+<h3><%= @investment_entry.whitepaper %> </h3>
+
+<form class="" action="/investment_entries/<%= @investment_entry.id %>" method="post">
+  <!--  -->
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Investment Entry">
+</form>
+
+<form class="" action="/investment_entries/<%= @investment_entry.id %>" method="post">
+  <!--  -->
+  <input type="hidden" name="_method" value="patch">
+  <input type="submit" name="" value="Edit Investment Entry">
+</form>
