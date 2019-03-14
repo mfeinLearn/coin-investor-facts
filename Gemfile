@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt', '~> 3.1.7'
 gem "tux"
 gem 'rails-erd'
+gem 'rb-readline'
 
 group :test do
   gem 'rspec'
