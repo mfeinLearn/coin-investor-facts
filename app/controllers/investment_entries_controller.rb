@@ -51,16 +51,25 @@ class InvestmentEntriesController < ApplicationController
     end
   end
 
-  post '/investment_entries/:id' do
+  patch '/investment_entries/:id' do
     @investment_entry = InvestmentEntry.find(params[:id])
-
-    if logged_in? && current_user.id == @investment_entry.user_id
-      @investment_entry.update(coin_name: params[:coin_name], community: params[:community], code: params[:code], whitepaper: params[:whitepaper])
+    #binding.pry
+    if logged_in? && current_user.id == @investment_entry.user_id && params[:coin_name] != "" && params[:community] != "" && params[:code] != "" && params[:whitepaper] != ""
+      @investment_entry.update(:coin_name => params[:coin_name], :community => params[:community], :code => params[:code], :whitepaper => params[:whitepaper])#, user_id: current_user.id, date: datetime)
       redirect "/investment_entries/#{@investment_entry.id}"
     else
       redirect "/investment_entries/#{@investment_entry.id}/edit"
     end
+  end
 
+  delete '/investment_entries/:id' do
+    @investment_entry = InvestmentEntry.find(params[:id])
+    if logged_in? && current_user.id == @investment_entry.user_id
+      @investment_entry.destroy
+      redirect "/investment_entries"
+    else
+      redirect "/investment_entries"
+    end
   end
 
 
