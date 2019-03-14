@@ -351,8 +351,8 @@ describe ApplicationController do
       end
 
       it 'lets a user edit their own investment entry if they are logged in' do
-        user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
         datetime = DateTime.now
+        user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
         investment_entry = InvestmentEntry.create(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/singnet", :whitepaper => "https://public.singularitynet.io/whitepaper.pdf", :user_id => 1, :date => datetime)
 
         visit '/login'
@@ -362,22 +362,23 @@ describe ApplicationController do
         click_button 'submit'
         visit '/investment_entries/1/edit'
 
-        fill_in(:coin_name, :with => "Ethereum")
-        fill_in(:community, :with => "https://gitter.im/ethereum/home")
-        fill_in(:code, :with => "https://github.com/ethereum")
-        fill_in(:whitepaper, :with => "https://github.com/ethereum/wiki/wiki/White-Paper")
-
-
-        click_button "submit"
-        expect(InvestmentEntry.find_by(coin_name: "Ethereum", community: "https://gitter.im/ethereum/home", code: "https://github.com/ethereum", whitepaper: "https://github.com/ethereum/wiki/wiki/White-Paper")).to be_instance_of(InvestmentEntry)
-        expect(InvestmentEntry.find_by(coin_name: "SingularityNET", community: "https://t.me/singularitynet", code: "https://github.com/singnet", whitepaper: "https://public.singularitynet.io/whitepaper.pdf")).to eq(nil)
+        fill_in(:coin_name, :with => "SingularityNET")
+        fill_in(:community, :with => "https://t.me/singularitynet")
+        fill_in(:code, :with => "https://github.com/mfeinLearn")
+        fill_in(:whitepaper, :with => "https://public.singularitynet.io/whitepaper.pdf")
+        #binding.pry
+        click_button 'submit'
+        expect(InvestmentEntry.find_by(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/mfeinLearn")).to be_instance_of(InvestmentEntry)
+        # expect(InvestmentEntry.find_by(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/mfeinLearn", :whitepaper => "https://public.singularitynet.io/whitepaper.pdf", :user_id => user.id, :date => datetime)).to be_instance_of(InvestmentEntry)
+        expect(InvestmentEntry.find_by(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/singnet", :whitepaper => "https://public.singularitynet.io/whitepaper.pdf", :user_id => user.id, :date => datetime)).to eq(nil)
         expect(page.status_code).to eq(200)
       end
 
-      it 'does not let a user edit a text with blank coin_name, community, code, and whitepaper' do
-        user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+      it 'does not let a user edit a text with blank content' do
         datetime = DateTime.now
+        user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
         investment_entry = InvestmentEntry.create(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/singnet", :whitepaper => "https://public.singularitynet.io/whitepaper.pdf", :user_id => 1, :date => datetime)
+
         visit '/login'
 
         fill_in(:username, :with => "becky567")
@@ -391,61 +392,66 @@ describe ApplicationController do
         fill_in(:whitepaper, :with => "")
 
         click_button 'submit'
-        expect(InvestmentEntry.find_by(:coin_name => "Ethereum", :community => "https://gitter.im/ethereum/home", :code => "https://github.com/ethereum", :whitepaper => "https://github.com/ethereum/wiki/wiki/White-Paper")).to eq(nil)
+        expect(InvestmentEntry.find_by(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/mfeinLearn")).to eq(nil)
         expect(page.current_path).to eq("/investment_entries/1/edit")
       end
     end
 
     context "logged out" do
-      it 'does not load -- instead redirects to login'# do
-      #   get '/tweets/1/edit'
-      #   expect(last_response.location).to include("/login")
-      # end
+      it 'does not load -- instead redirects to login' do
+        get '/investment_entries/1/edit'
+        expect(last_response.location).to include("/login")
+      end
     end
   end
 
   describe 'delete action' do
     context "logged in" do
-      it 'lets a user delete their own investment entry if they are logged in' #do
-      #   user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-      #   tweet = Tweet.create(:content => "tweeting!", :user_id => 1)
-      #   visit '/login'
-      #
-      #   fill_in(:username, :with => "becky567")
-      #   fill_in(:password, :with => "kittens")
-      #   click_button 'submit'
-      #   visit 'tweets/1'
-      #   click_button "Delete Tweet"
-      #   expect(page.status_code).to eq(200)
-      #   expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
-      # end
+      it 'lets a user delete their own investment entry if they are logged in' do
+        user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+        datetime = DateTime.now
+        investment_entry = InvestmentEntry.create(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/singnet", :whitepaper => "https://public.singularitynet.io/whitepaper.pdf", :user_id => 1, :date => datetime)
+      #  tweet = Tweet.create(:content => "tweeting!", :user_id => 1)
+        visit '/login'
+        #binding.pry
+        fill_in(:username, :with => "becky567")
+        fill_in(:password, :with => "kittens")
+        click_button 'submit'
+        visit 'investment_entries/1'
+        click_button "Delete Investment Entry"
+        expect(page.status_code).to eq(200)
+        expect(InvestmentEntry.find_by(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/singnet", :whitepaper => "https://public.singularitynet.io/whitepaper.pdf", :user_id => 1, :date => datetime)).to eq(nil)
+      end
 
-      it 'does not let a user delete a investment entry they did not create' #do
-      #   user1 = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-      #   tweet1 = Tweet.create(:content => "tweeting!", :user_id => user1.id)
-      #
-      #   user2 = User.create(:username => "silverstallion", :email => "silver@aol.com", :password => "horses")
-      #   tweet2 = Tweet.create(:content => "look at this tweet", :user_id => user2.id)
-      #
-      #   visit '/login'
-      #
-      #   fill_in(:username, :with => "becky567")
-      #   fill_in(:password, :with => "kittens")
-      #   click_button 'submit'
-      #   visit "tweets/#{tweet2.id}"
-      #   click_button "Delete Tweet"
-      #   expect(page.status_code).to eq(200)
-      #   expect(Tweet.find_by(:content => "look at this tweet")).to be_instance_of(Tweet)
-      #   expect(page.current_path).to include('/tweets')
-      # end
+      it 'does not let a user delete a investment entry they did not create' do
+        datetime = DateTime.now
+
+        user1 = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+        investment_entry1 = InvestmentEntry.create(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/singnet", :whitepaper => "https://public.singularitynet.io/whitepaper.pdf", :user_id => user1.id, :date => datetime)
+
+        user2 = User.create(:username => "silverstallion", :email => "silver@aol.com", :password => "horses")
+        investment_entry2 = InvestmentEntry.create(:coin_name => "Ethereum", :community => "https://gitter.im/ethereum/home", :code => "https://github.com/ethereum", :whitepaper => "https://github.com/ethereum/wiki/wiki/White-Paper", :user_id => user2.id, :date => datetime)
+
+        visit '/login'
+
+        fill_in(:username, :with => "becky567")
+        fill_in(:password, :with => "kittens")
+        click_button 'submit'
+        visit "investment_entries/#{investment_entry2.id}"
+        click_button "Delete Investment Entry"
+        expect(page.status_code).to eq(200)
+        expect(InvestmentEntry.find_by(:coin_name => "Ethereum", :community => "https://gitter.im/ethereum/home", :code => "https://github.com/ethereum", :whitepaper => "https://github.com/ethereum/wiki/wiki/White-Paper")).to be_instance_of(InvestmentEntry)
+        expect(page.current_path).to include('/investment_entries')
+      end
     end
 
     context "logged out" do
-      it 'does not load let user delete a investment entry if not logged in' #do
-      #   tweet = Tweet.create(:content => "tweeting!", :user_id => 1)
-      #   visit '/tweets/1'
-      #   expect(page.current_path).to eq("/login")
-      # end
+      it 'does not load let user delete a investment entry if not logged in' do
+        datetime = DateTime.now
+        investment_entry = InvestmentEntry.create(:coin_name => "SingularityNET", :community => "https://t.me/singularitynet", :code => "https://github.com/singnet", :whitepaper => "https://public.singularitynet.io/whitepaper.pdf", :user_id => 1, :date => datetime)
+        visit '/investment_entries/1'
+        expect(page.current_path).to eq("/login")
+      end
     end
   end
  end
