@@ -7,6 +7,21 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "my_super_sacrure_coin_invester_app_secret"
+
+    # invocked a register method and pass in sinatra flash
+    # "flash is just a hash!!"
+    # flash only last for one http request
+    register Sinatra::Flash
+    # I now have access to a hash called flash
+    # where I can add key value pairs to a flash message
+    # the life cycle of a flash message once I create it
+    # is exactly 1 http request
+
+    #NOTE: flash messages must be built at specific points within our controller
+    #  that will end in a redirect
+    # flash can be used when we create, update, or delete something
+    # because create, update, or delete usually ends with a redirect
+    # - flash messages only survive one http request. eg. one http request then they are gone
   end
 
   get '/' do
