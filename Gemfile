@@ -13,6 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "tux"
 gem 'rails-erd'
 gem 'rb-readline'
+gem 'sinatra-flash'
 
 group :test do
   gem 'rspec'
