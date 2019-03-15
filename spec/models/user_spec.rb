@@ -8,36 +8,36 @@ describe 'User' do # describe - wrape and enclose the various test for our vario
 
   #1. describe the attributes of a user
   #2. the string '' is ->'use string to describe this paticular test'
-  it 'has a first name, last name, and email'# do
-  #   user = User.new(first_name: "Malcome", last_name: "Fein", email: "mfein90@gmail.com")
-  #
-  #   expect(user).to be_valid
-  # end
+  it 'has a username, email, and password' do
+    user = User.create(username: "Malcome", email: "mfein90@gmail.com", password: "password")
 
-  it 'is invalid without a first name'# do
-  # user = User.new(last_name: "Fein", email: "mfein90@gmail.com")
-  #
-  #   expect(user).to_not be_valid
-  # end
+    expect(user).to be_valid
+  end
 
-  it 'is invalid without a last name'# do
-  # user = User.new(first_name: "Malcome", email: "mfein90@gmail.com")
-  #
-  #   expect(user).to_not be_valid
-  # end
+  it 'is invalid without a username'  do
+    user = User.create(email: "mfein90@gmail.com", password: "password")
 
-  it 'is invalid without an email' #do
-  #   user = User.new(first_name: "Malcome", last_name: "Fein")
-  #
-  #   expect(user).to_not be_valid
-  # end
+    expect(user).to_not be_valid
+  end
 
-  it 'is invalid with a duplicate email'# do
-  # user1 = User.new(first_name: "Malcome", last_name: "Fein", email: "mfein90@gmail.com")
-  # user2 = User.new(first_name: "Philip", last_name: "Fry", email: "mfein90@gmail.com")
-  #
-  #     expect(user2).to_not be_valid
-  # end
+  it 'is invalid without a email' do
+    user = User.create(username: "Malcome", password: "password")
+
+    expect(user).to_not be_valid
+  end
+
+  it 'is invalid without an password' do
+    user = User.create(username: "Malcome", email: "mfein90@gmail.com")
+
+    expect(user).to_not be_valid
+  end
+
+  it 'is invalid with a duplicate email' do
+  user1 = User.create(username: "Malcome", email: "mfein90@gmail.com", password: "password")
+  user2 = User.create(username: "Philip",  email: "mfein90@gmail.com", password: "password_code")
+
+  expect(user2).to_not be_valid
+  end
 
   it 'can slug the username' do
     expect(@user.slug).to eq("test-123")
