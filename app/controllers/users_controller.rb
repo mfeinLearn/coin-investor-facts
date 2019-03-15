@@ -35,6 +35,7 @@ class UsersController < ApplicationController
      if @user && @user.authenticate(params[:password])
       #raise params.inspect
       session[:user_id] = @user.id # actually logging the user in
+      flash[:message] = "Welcome, #{@user.username}!"
       redirect "/investment_entries"
     else
       redirect "/signup"
