@@ -38,6 +38,9 @@ class UsersController < ApplicationController
       flash[:message] = "Welcome, #{@user.username}!"
       redirect "/investment_entries"
     else
+      flash[:errors] = "Your credentials were invalid. Please sign up or try again."
+      # tell the user they entered invalid credentials
+      # redirect them to the login page
       redirect "/signup"
     end
   end
