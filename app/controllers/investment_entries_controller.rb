@@ -4,7 +4,7 @@ class InvestmentEntriesController < ApplicationController
   get '/investment_entries' do
     if logged_in?
       @investment_entries = InvestmentEntry.all
-      erb :'investment_entries/index'
+      erb :'/investment_entries/index'
     else
       redirect "/login"
     end
@@ -24,8 +24,10 @@ class InvestmentEntriesController < ApplicationController
     if params[:coin_name] != "" && params[:community] != "" && params[:code] != "" && params[:whitepaper] != "" && params[:user_id] != "" && params[:date] != ""
       datetime = DateTime.now
       @investment_entry = InvestmentEntry.create(coin_name: params[:coin_name], community: params[:community], code: params[:code], whitepaper: params[:whitepaper], user_id: current_user.id, date: datetime)
+      flash[:message] = "Investment Entry successfully created." if @investment_entry.id
       redirect "/investment_entries"
     else
+      flash[:errors] = "Something went wrong - you must provide content for your entry."
       redirect '/investment_entries/new'
     end
   end
@@ -66,6 +68,7 @@ class InvestmentEntriesController < ApplicationController
     @investment_entry = InvestmentEntry.find(params[:id])
     if logged_in? && current_user.id == @investment_entry.user_id
       @investment_entry.destroy
+      flash[:message] = "Successfully deleted that entry."
       redirect "/investment_entries"
     else
       redirect "/investment_entries"
