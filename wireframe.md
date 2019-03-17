@@ -97,7 +97,6 @@ view their entries
 # Stretch Goals
 
 - CSS - make it look really nice
-- Tests
 - Include a join model
 - Include a Investment model - users have different Investments and a Investment has many Entries
 - Users can see update news regarding regulation in the layout
