@@ -1,11 +1,12 @@
-<h3><%= @investment_entry.coin_name %> </h3>
+<h3>coin_name: <%= @investment_entry.coin_name %> </h3>
 <br>
-<h3><%= @investment_entry.community %> </h3>
+<h3>community: <%= @investment_entry.community %> </h3>
 <br>
-<h3><%= @investment_entry.code %> </h3>
+<h3>code: <%= @investment_entry.code %> </h3>
 <br>
-<h3><%= @investment_entry.whitepaper %> </h3>
+<h3>whitepaper: <%= @investment_entry.whitepaper %> </h3>
 
+<% if authorized_to_edit?(@investment_entry) %>
 <form class="" action="/investment_entries/<%= @investment_entry.id %>" method="post">
   <!--  -->
   <input type="hidden" name="_method" value="DELETE">
@@ -17,3 +18,4 @@
   <input type="hidden" name="_method" value="patch">
   <input type="submit" name="" value="Edit Investment Entry">
 </form>
+<% end %>
