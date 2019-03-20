@@ -4,6 +4,8 @@ class InvestmentEntriesController < ApplicationController
   get '/investment_entries' do
     if logged_in?
       @investment_entries = InvestmentEntry.all
+      @team = Team.all
+
       erb :'/investment_entries/index'
     else
       redirect "/login"
@@ -21,10 +23,23 @@ class InvestmentEntriesController < ApplicationController
 
   post '/investment_entries' do
     redirect_if_not_logged_in
-    if params[:coin_name] != "" && params[:community] != "" && params[:code] != "" && params[:whitepaper] != "" && params[:user_id] != "" && params[:date] != "" && params[:team] != ""
+    if params[:coin_name] != "" && params[:community] != "" && params[:code] != "" && params[:whitepaper] != "" && params[:user_id] != "" && params[:date] != "" && params[:team0] != ""
       datetime = DateTime.now
       @investment_entry = InvestmentEntry.create(coin_name: params[:coin_name], community: params[:community], code: params[:code], whitepaper: params[:whitepaper], user_id: current_user.id, date: datetime)
-      @team = Team.create(name: params[:name],investment_entry_id: params[:investment_entry_id] )
+      if params[:team0] != ""
+      @team = Team.create(name: params[:team0],investment_entry_id: @investment_entry.id )
+      end
+      if params[:team1] != ""
+      @team = Team.create(name: params[:team1],investment_entry_id: @investment_entry.id )
+      end
+      if params[:team2] != ""
+      @team = Team.create(name: params[:team2],investment_entry_id: @investment_entry.id )
+      end
+      if params[:team3] != ""
+      @team = Team.create(name: params[:team3],investment_entry_id: @investment_entry.id )
+      end
+
+      #raise params.inspect
       flash[:message] = "Investment Entry successfully created." if @investment_entry.id
       redirect "/investment_entries"
     else
