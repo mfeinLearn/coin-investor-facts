@@ -1,9 +1,7 @@
-new.erb
-
 <h2>Create a new Investment Entry: </h2>
 
 <form class="" action="/investment_entries" method="post">
-  <label>coin_name:</label>
+  <label>Coin:</label>
   <input type="text" name="coin_name">
 
   <label>community:</label>
@@ -15,8 +13,18 @@ new.erb
   <label>whitepaper:</label>
   <input type="text" name="whitepaper">
 
-  <label>Team:</label>
-  <input type="text" name="team">
+  <label>A founding team member:</label>
+  <input type="text" name="team0">
+
+  <label>Another founding team member:</label>
+  <input type="text" name="team1">
+
+  <label>Another founding team member:</label>
+  <input type="text" name="team2">
+
+  <label>Another founding team member:</label>
+  <input type="text" name="team3">
+
 
   <input type="submit" id="submit"  name="submit"  value="Create Investment Entry">
 
