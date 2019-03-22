@@ -10,5 +10,9 @@
   <input type="text" name="code" value="<%= @investment_entry.code %>">
   <label>whitepaper:</label>
   <input type="text" name="whitepaper" value="<%= @investment_entry.whitepaper %>">
+  <label>A founding team member:</label>
+  <% @investment_entry.teams.each do |team| %>
+  <input type="text" name="name" value="<%= team.name %>">
+    <% end %>
   <input type="submit" name= "" value="submit">
 </form>

@@ -55,6 +55,21 @@ class UsersController < ApplicationController
     erb :'users/show'
   end
 
+  # # user SHOW route
+  # # this routes job is to show the user
+  # get '/users/:slug/investment_entries' do
+  #   if logged_in?
+  #     @investment_entries = InvestmentEntry.all.select()
+  #     @team = Team.all.select()
+  #
+  #     erb :'/investment_entries/index'
+  #   else
+  #     redirect "/login"
+  #   end
+  #
+  #   erb :'users/personal'
+  # end
+
   get '/logout' do
     if logged_in?
       session.clear
