@@ -78,7 +78,7 @@ class InvestmentEntriesController < ApplicationController
       @investment_entry.teams[2].name = params[:team2]
       @investment_entry.teams[3].name = params[:team3]
 
-      #binding.pry
+      binding.pry
       @investment_entry.save
       # if params[:team0] != ""
       #   @team.update(name: params[:team0])
