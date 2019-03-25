@@ -69,10 +69,15 @@ class InvestmentEntriesController < ApplicationController
     #raise params.inspect
     if current_user.id == @investment_entry.user_id && params[:coin_name] != "" && params[:community] != "" && params[:code] != "" && params[:whitepaper] != "" # && params[:team0] != ""
       @investment_entry.update(:coin_name => params[:coin_name], :community => params[:community], :code => params[:code], :whitepaper => params[:whitepaper])#, user_id: current_user.id, date: datetime)
-      @investment_entry.teams << Team.update(name: params[:team0])
-      @investment_entry.teams << Team.update(name: params[:team1])
-      @investment_entry.teams << Team.update(name: params[:team2])
-      @investment_entry.teams << Team.update(name: params[:team3])
+      # @investment_entry.teams << Team.update(name: params[:team0])
+      # @investment_entry.teams << Team.update(name: params[:team1])
+      # @investment_entry.teams << Team.update(name: params[:team2])
+      # @investment_entry.teams << Team.update(name: params[:team3])
+      @investment_entry.teams[0].name = params[:team0]
+      @investment_entry.teams[1].name = params[:team1]
+      @investment_entry.teams[2].name = params[:team2]
+      @investment_entry.teams[3].name = params[:team3]
+
       #binding.pry
       @investment_entry.save
       # if params[:team0] != ""
