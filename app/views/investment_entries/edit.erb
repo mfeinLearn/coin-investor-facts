@@ -12,7 +12,7 @@
   <input type="text" name="whitepaper" value="<%= @investment_entry.whitepaper %>">
   <label>A founding team member:</label>
   <% @investment_entry.teams.each_with_index do |team,index| %>
-  <input type="text" name="teams<%=index%>" value="<%= team.name %>">
+  <input type="text" name="team<%=index%>" value="<%= team.name %>">
     <% end %>
   <input type="submit" name= "" value="submit">
 </form>
