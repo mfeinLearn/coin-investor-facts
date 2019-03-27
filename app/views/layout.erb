@@ -16,14 +16,19 @@
   <body>
 
     <div class="wrapper">
+<%#= setting the flash message here gives us the power to dictate its color when we call
+it in our controllers  %>
+<%#= if we call flash message we should change it to green %>
       <% if flash[:message] %>
         <h3 style="color: green;"><%= flash[:message] %></h3>
       <% end %>
+<%#= if we call flash error message we should change it to red %>
+
       <% if flash[:errors] %>
         <h3 style="color: red;"><%= flash[:errors]
           %></h3>
       <% end %>
-
+<%#= yield will render the template of the current controller/action. %>
         <%= yield %>
 
       <footer class="branding">

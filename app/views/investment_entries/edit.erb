@@ -1,5 +1,9 @@
 <h2>Edit Investment Entry: </h2>
+<%#= Rack::MethodOverride allows me to change the http verb of a request
+patch request changes existing information %>
 
+<%#=  why patch request %>
+<%#= because we are changing existing information.    %>
 <form class="" action="/investment_entries/<%= @investment_entry.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label>coin_name:</label>

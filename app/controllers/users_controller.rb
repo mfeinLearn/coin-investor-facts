@@ -32,6 +32,11 @@ class UsersController < ApplicationController
 
   post '/login' do
     @user = User.find_by(username: params[:username])
+    #binding.pry
+    # authenticate is a method from the has_secure_password
+    # more on has_secure_password in the User model
+    # this takes in a string which is a pasword
+    # and returns a hashed version of the password.
      if @user && @user.authenticate(params[:password])
       #raise params.inspect
       session[:user_id] = @user.id # actually logging the user in

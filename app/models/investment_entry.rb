@@ -1,4 +1,4 @@
 class InvestmentEntry < ActiveRecord::Base
-  belongs_to :user
+  has_many :user_investment_entries
   has_many :teams
 end
