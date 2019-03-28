@@ -22,10 +22,6 @@ ActiveRecord::Schema.define(version: 20190327223133) do
     t.datetime "date"
   end
 
-  create_table "investments", force: :cascade do |t|
-    t.integer "score"
-  end
-
   create_table "startups", force: :cascade do |t|
     t.string  "company_name"
     t.string  "innovation"
@@ -45,7 +41,9 @@ ActiveRecord::Schema.define(version: 20190327223133) do
 
   create_table "user_investment_entries", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "investment_entry_id"
+    t.integer "startup_id", default: 1
+    t.integer "coin_id",    default: 1
+    t.integer "score"
   end
 
   create_table "users", force: :cascade do |t|
