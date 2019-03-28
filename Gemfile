@@ -15,6 +15,7 @@ gem "tux"
 gem 'rails-erd'
 gem 'rb-readline'
 gem 'sinatra-flash'
+gem 'rails-erd', group: :development
 
 group :test do
   gem 'rspec'

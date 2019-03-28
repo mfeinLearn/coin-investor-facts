@@ -1,6 +1,6 @@
-class CreateInvestmentEntries < ActiveRecord::Migration
+class CreateCoins < ActiveRecord::Migration
   def change
-    create_table :investment_entries do |t|
+    create_table :coins do |t|
       t.string :coin_name
       t.string :community
       t.string :code

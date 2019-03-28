@@ -142,3 +142,32 @@ vic = Team.create(name: params[:name])
 users-<investment_entries(coins)-<teams(board members)
 (asset classes = ++++coin++++, equity, gold, real estate)
 ########################### 'The abstraction' ########################################################
+
+INVESTMENT ENRTY:
+Company: string - new, recently created (string)
+
+Innovation: high, medium, low  (string)
+
+Growth: fast, moderate, slow  (string)
+
+Product: product / service  (string)
+
+Team: small, large  (string)
+
+Structure: yes, no  (string)
+
+Resources: owners, Venture Capital, Angels, other  (string)
+
+Partnerships: yes, no  (string)
+
+Uncertainties: market, product resources, competition, people and finances.  (string)
+
+Company
+Innovation
+Growth
+Product
+Team
+Structure
+Resources
+Partnerships
+Uncertainties

@@ -20,3 +20,37 @@ team: Justin Sun
   <label>Another founding team member:</label>
   <input type="text" name="team3" value="<%# team.name %>"> -->
 <% end %>
+
+
+class CreateInvestmentEntries < ActiveRecord::Migration
+  def change
+    create_table :investment_entries do |t|
+      t.string :coin_name
+      t.string :community
+      t.string :code
+      t.string :whitepaper
+      t.integer :user_id
+      t.datetime :date
+    end
+  end
+end
+Company
+Innovation
+Growth
+Product
+Team
+Structure
+Resources
+Partnerships
+Uncertainties
+create_table :startups do |t|
+  t.string :company_name
+  t.string :innovation
+  t.string :growth
+  t.string :product
+  t.integer :team
+  t.datetime :structure
+  t.string :resources
+  t.integer :partnerships
+  t.datetime :uncertainties
+end

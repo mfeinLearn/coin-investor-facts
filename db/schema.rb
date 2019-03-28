@@ -11,15 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190327030639) do
+ActiveRecord::Schema.define(version: 20190327223133) do
 
-  create_table "investment_entries", force: :cascade do |t|
+  create_table "coins", force: :cascade do |t|
     t.string   "coin_name"
     t.string   "community"
     t.string   "code"
     t.string   "whitepaper"
     t.integer  "user_id"
     t.datetime "date"
+  end
+
+  create_table "investments", force: :cascade do |t|
+    t.integer "score"
+  end
+
+  create_table "startups", force: :cascade do |t|
+    t.string  "company_name"
+    t.string  "innovation"
+    t.string  "growth"
+    t.string  "product"
+    t.integer "team_id"
+    t.string  "structure"
+    t.string  "resource"
+    t.string  "partnerships"
+    t.string  "uncertainties"
   end
 
   create_table "teams", force: :cascade do |t|

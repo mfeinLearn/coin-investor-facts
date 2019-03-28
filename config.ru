@@ -11,5 +11,6 @@ end
 use Rack::MethodOverride
 use UsersController
 use InvestmentEntriesController
+use StartupEntriesController
 
 run ApplicationController

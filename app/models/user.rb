@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 #  these validations will pervent ActiveRecord from:
 #  - creation saving updating from the database if these requirements are not meet
   has_many :user_investment_entries
-  has_many :investment_entries, through: :user_investment_entries
+  has_many :investments, through: :user_investment_entries
 
   def slug
     #binding.pry

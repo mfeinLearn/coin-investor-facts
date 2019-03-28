@@ -1,3 +1,4 @@
 class Team < ActiveRecord::Base
-  belongs_to :investment_entry
+  belongs_to :startup
+  belongs_to :coin
 end
