@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190327223133) do
+ActiveRecord::Schema.define(version: 20190329161309) do
 
   create_table "coins", force: :cascade do |t|
     t.string   "coin_name"
@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 20190327223133) do
 
   create_table "teams", force: :cascade do |t|
     t.string  "name"
-    t.integer "investment_entry_id"
+    t.integer "startup_id"
+    t.integer "coin_id"
   end
 
   create_table "user_investment_entries", force: :cascade do |t|
