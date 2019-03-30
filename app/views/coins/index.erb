@@ -1,1 +1,33 @@
 <h2>Welcome, <%= current_user.username %> 👋</h2>
+<h3>Coins</h3>
+
+<a href="/logout">logout 😢</a>
+<br>
+<br>
+<a href="/coins/new">Create Coin Entry 🤑</a>
+<br>
+<br>
+<ul><% @coins.each do |coin| %>
+  <li><b>Coin:</b> <a href="/coins/<%= coin.id %>"><%= coin.coin_name %></a></li>
+  <li><b>community:</b> <%= coin.community %></li>
+  <li><b>code:</b> <%= coin.code %></li>
+  <li><b>whitepaper:</b> <%= coin.whitepaper %></li>
+  <li><b>date:</b> <%= coin.date.to_formatted_s(:long) %></li>
+  <li><b>Team:</b>
+    <ul><% coin.teams.each do |team| %>
+  <li><%= team.name %></li>
+  <% end %>
+  </ul>
+  </li>
+  <br>
+  <li>
+    <strong>Users:</strong>
+    <ul>
+      <% coin.users.each do |user| %>
+        <li><%= user.username %></li>
+      <% end %>
+    </ul>
+  </li>
+  <br>
+<%end %>
+</ul>

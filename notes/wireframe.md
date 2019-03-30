@@ -95,26 +95,26 @@ Users can signup, log in, logout, create Investment entries, edit their own entr
 view their entries
 
 # Stretch Goals
-
-- CSS - make it look really nice
-- Include a join model
+  see in extra branch for more info: https://github.com/mfeinLearn/coin-investor-facts/tree/extra
+- Include a join model ->done
 - Include a Investment model - users have different Investments and a Investment has many Entries
-- Users can see update news regarding regulation in the layout
+  -> done-ish(I just added two models for investments)
+  - Abstract away investment_entries to enable people to invest in other asset classes - Done-ish
+  (asset classes = coin)   
+
 ######VERY BIG STRETCH GOAL######
-- Abstract away investment_entries to enable people to invest in other asset classes
-(asset classes = coin)   
+- Users can see update news regarding regulation in the layout
+- CSS - make it look really nice
+
+######CURRENT ISSUES######
+- authenticate is not set up properly yet!
+- controllers and views are: still in progress
+
+=> look at the following for reference:
+https://github.com/mfeinLearn/coin-investor-facts 
+https://github.com/mfeinLearn/nyc-sinatra-v-000
 
 
-
-######################## 'TEAMS' ##############################################################
-
-# list out all of the team members associated with the investment_entry in question
-investment_entries.each do |investment_entry|
-  investment_entry.teams.each do |team|
-    Team.all.investment_entry_id == team.investment_entry_id
-  end
-end
-########################### 'TEAMS' ###########################################################
 
 ############################ investment big picture ########################################
                             investment
@@ -123,51 +123,10 @@ end
                             , c1     ,
                             ,  c2    ,
 ***investment_enties****  = ,,,,,,,,,,
-
-########################### investment big picture #########################################
-
-
-DIAGRAM:
-users-<investment_entries-<teams
-
-associations:
-malcome = User.create(name: "malcome", email: "malcome@malcome.com", password:"Hashed")
-
-eth = InvestmentEntry.create(name: params[:name], team: params[:team], community: params[:community], code: params[:code], whitepaper: params[:whitepaper], user_id: params[:user_id], date: params[:date])
-
-vic = Team.create(name: params[:name])
+############################ investment big picture ########################################
 
 
 ########################### 'The abstraction' ########################################################
 users-<investment_entries(coins)-<teams(board members)
 (asset classes = ++++coin++++, equity, gold, real estate)
 ########################### 'The abstraction' ########################################################
-
-INVESTMENT ENRTY:
-Company: string - new, recently created (string)
-
-Innovation: high, medium, low  (string)
-
-Growth: fast, moderate, slow  (string)
-
-Product: product / service  (string)
-
-Team: small, large  (string)
-
-Structure: yes, no  (string)
-
-Resources: owners, Venture Capital, Angels, other  (string)
-
-Partnerships: yes, no  (string)
-
-Uncertainties: market, product resources, competition, people and finances.  (string)
-
-Company
-Innovation
-Growth
-Product
-Team
-Structure
-Resources
-Partnerships
-Uncertainties

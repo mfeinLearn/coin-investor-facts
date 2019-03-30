@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      redirect "/coins"
+      redirect '/categories'
     else
       erb :"users/create_user"
     end
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect to "/coins"
+      redirect to '/categories'
 
     else
       redirect '/signup'
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect '/coins'
+      redirect '/categories'
     else
       erb :'/users/login'
     end
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       #raise params.inspect
       session[:user_id] = @user.id # actually logging the user in
       flash[:message] = "Welcome, #{@user.username}!"
-      redirect "/coins"
+      redirect '/categories'
     else
       flash[:errors] = "Your credentials were invalid. Please sign up or try again."
       # tell the user they entered invalid credentials

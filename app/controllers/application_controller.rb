@@ -35,6 +35,10 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  get '/categories' do
+      erb :"application/index"
+  end
+
   helpers do
 
     def logged_in?
@@ -62,14 +66,14 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    def authorized_to_edit?(entry)
+    def authorized_to_edit?(coins)
       # InvestmentEntry class has a method called
       # user which
 
       # Thanks to activerecord we get access to the user method from the
       # attribute accessor of belongs_to from the investment_entry model
       # which gives us access to a user
-      entry.user == current_user
+      coins.users.last == current_user
     end
 
   end

@@ -77,11 +77,8 @@ class CoinsController < ApplicationController
     get '/coins/:id/edit' do
         set_coin
         redirect_if_not_logged_in
-      if authorized_to_edit?(@coin)
+        # add authentication logic
         erb :'/coins/edit'
-      else
-        redirect "/login"
-      end
     end
 
     patch '/coins/:id' do

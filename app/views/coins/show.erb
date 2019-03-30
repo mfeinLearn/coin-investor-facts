@@ -1,23 +1,26 @@
-<a href="/investment_entries">👈 Back</a>
+<a href="/coins">👈 Back</a>
 <br>
 <br>
 
 <p>
-<li><b>Coin:</b> <%= @investment_entry.coin_name %> <br/> </li>
-<li><b>Community:</b> <%= @investment_entry.community %> <br/> </li>
-<li><b>Code:</b> <%= @investment_entry.code %> <br/> </li>
-<li><b>Whitepaper:</b> <%= @investment_entry.whitepaper %> <br/> </li>
-<li><b>Team:</b> <% @investment_entry.teams.each do |team| %> </li>
-  <li><%= team.name %></li>
+<li><b>Coin:</b> <%= @coin.coin_name %> <br/> </li>
+<li><b>Community:</b> <%= @coin.community %> <br/> </li>
+<li><b>Code:</b> <%= @coin.code %> <br/> </li>
+<li><b>Whitepaper:</b> <%= @coin.whitepaper %> <br/> </li>
+<li><b>Team:</b> <% @coin.teams.each do |team| %> </li>
+<li><%= team.name %></li>
     <% end %>
+<li><b>User:</b> <% @coin.users.each do |user| %> <br/> </li>
+<li><%= user.username %></li>
+  <% end %>
+
 <br>
-<% if authorized_to_edit?(@investment_entry) %>
-<form class="" action="/investment_entries/<%= @investment_entry.id %>" method="post">
-  <!--  -->
+<%#= a  %>
+<form class="" action="/coins/<%= @coin.id %>" method="post">
+<!-- authorized_to_edit?  -->
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" name="" value="Delete Investment Entry">
+  <input type="submit" name="" value="Delete Coin Entry">
 </form>
 <br>
-<a href="/investment_entries/<%= @investment_entry.id %>/edit"> edit investment entry</a>
-
-<% end %>
+<a href="/coins/<%= @coin.id %>/edit"> edit coin entry</a>
+<!-- authorized_to_edit?  -->
