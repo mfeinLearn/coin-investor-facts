@@ -10,7 +10,6 @@ end
 # In order to send PATCH and DELETE requests, I will need to add a line of code here...
 use Rack::MethodOverride
 use UsersController
-use InvestmentEntriesController
-use StartupEntriesController
-
+use CoinsController
+use StartupsController
 run ApplicationController

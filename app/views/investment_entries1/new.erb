@@ -1,0 +1,32 @@
+<h2>Create a new Investment Entry: </h2>
+<%#= the value for the name attribute is the key for the params. the value of
+the params is what the user inputed into the form  %>
+<form class="" action="/investment_entries" method="post">
+  <label>Coin:</label>
+  <input type="text" name="coin_name">
+
+  <label>community:</label>
+  <input type="text" name="community">
+
+  <label">code:</label>
+  <input type="text" name="code">
+
+  <label>whitepaper:</label>
+  <input type="text" name="whitepaper">
+
+  <label>A founding team member:</label>
+  <input type="text" name="team0">
+
+  <label>Another founding team member:</label>
+  <input type="text" name="team1">
+
+  <label>Another founding team member:</label>
+  <input type="text" name="team2">
+
+  <label>Another founding team member:</label>
+  <input type="text" name="team3">
+
+
+  <input type="submit" id="submit"  name="submit"  value="Create Investment Entry">
+
+</form>

@@ -1,0 +1,23 @@
+<a href="/investment_entries">👈 Back</a>
+<br>
+<br>
+
+<p>
+<li><b>Coin:</b> <%= @investment_entry.coin_name %> <br/> </li>
+<li><b>Community:</b> <%= @investment_entry.community %> <br/> </li>
+<li><b>Code:</b> <%= @investment_entry.code %> <br/> </li>
+<li><b>Whitepaper:</b> <%= @investment_entry.whitepaper %> <br/> </li>
+<li><b>Team:</b> <% @investment_entry.teams.each do |team| %> </li>
+  <li><%= team.name %></li>
+    <% end %>
+<br>
+<% if authorized_to_edit?(@investment_entry) %>
+<form class="" action="/investment_entries/<%= @investment_entry.id %>" method="post">
+  <!--  -->
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Investment Entry">
+</form>
+<br>
+<a href="/investment_entries/<%= @investment_entry.id %>/edit"> edit investment entry</a>
+
+<% end %>

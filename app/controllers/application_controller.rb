@@ -62,14 +62,14 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    def authorized_to_edit?(investment_entry)
+    def authorized_to_edit?(entry)
       # InvestmentEntry class has a method called
       # user which
 
       # Thanks to activerecord we get access to the user method from the
       # attribute accessor of belongs_to from the investment_entry model
       # which gives us access to a user
-      investment_entry.user == current_user
+      entry.user == current_user
     end
 
   end
